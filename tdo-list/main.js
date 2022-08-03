@@ -1,9 +1,11 @@
 
 const inp = document.querySelector('.entered-list');
 const add_btn =document.querySelector('.add-to-list');
-
 const task_div = document.querySelector('.tasks');
 const rem_btn = document.querySelector('.remove');
+const clear = document.querySelector('.clear');
+const dateElement = document.querySelector('.date');
+
 
 
 inp.addEventListener('keyup', ()=>{
@@ -34,6 +36,26 @@ add_btn.addEventListener('click', () => {
         window.alert("Please enter a task to continue");
     }
 });
+
+document.addEventListener('keyup', (event) => {
+    if(event.key== 'Enter'){
+        if(inp.value.trim() != 0){
+            let new_itm = document.createElement('div');
+            new_itm.classList.add('item');
+            new_itm.innerHTML = `
+            <p>${inp.value}</p> 
+            <div class="items-btn">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        <i class="fa-solid fa-xmark"></i>
+            </div>`
+            document.querySelector('.tasks').appendChild(new_itm);
+            inp.value = '';
+        }
+        else{
+            window.alert("Please enter a task to continue");
+        }
+    }
+})
 
 //deleted items that are done
 
